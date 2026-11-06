@@ -1,4 +1,5 @@
 import { CONFIG } from "@/lib/config";
+import type { Invite } from "@/lib/invite";
 import { cssVars } from "@/lib/motion";
 import { Icon } from "./SvgSprites";
 import Crest from "./Crest";
@@ -27,7 +28,7 @@ function Mandala() {
   );
 }
 
-export default function Hero() {
+export default function Hero({ invite }: { invite: Invite }) {
   return (
     <header className="hero" id="top">
       <div className="wm" aria-hidden="true"><Mandala /></div>
@@ -35,12 +36,12 @@ export default function Hero() {
       <Crest className="hero-crest reveal" height={88} style={cssVars({ "--i": 0 })} />
       <p className="mantra reveal" style={cssVars({ "--i": 0 })} lang="hi">॥ श्री गणेशाय नमः ॥</p>
       <p className="pre reveal" style={cssVars({ "--i": 1 })}>
-        With the blessings of our families, we can&apos;t wait to celebrate with you
+        With the blessings of our families, we joyfully invite you to the wedding of
       </p>
       <h1 className="names reveal" style={cssVars({ "--i": 2 })}>
-        <span className="nm">{CONFIG.groom}</span>
+        <span className="nm">{invite.first}</span>
         <span className="amp">and</span>
-        <span className="nm">{CONFIG.bride}</span>
+        <span className="nm">{invite.second}</span>
       </h1>
       <p className="when reveal" style={cssVars({ "--i": 3 })}>{CONFIG.dateLong}</p>
       <p className="where reveal muted" style={cssVars({ "--i": 3 })}>{CONFIG.city}</p>

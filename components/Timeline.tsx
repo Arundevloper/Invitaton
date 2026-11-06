@@ -1,9 +1,9 @@
-import { CONFIG, gcalUrl } from "@/lib/config";
+import { gcalUrl, type Invite } from "@/lib/invite";
 import { cssVars } from "@/lib/motion";
 import { Divider, Icon } from "./SvgSprites";
 
 /* ceremonies — timeline */
-export default function Timeline() {
+export default function Timeline({ invite }: { invite: Invite }) {
   return (
     <section id="events">
       <div className="wrap">
@@ -11,7 +11,7 @@ export default function Timeline() {
         <Divider />
       </div>
       <div className="timeline" id="cerList">
-        {CONFIG.events.map((e) => (
+        {invite.events.map((e) => (
           <div key={e.key} className="cer-item ros" style={cssVars({ "--acc": e.accent || "var(--gold)" })}>
             <div className="cer-badge"><Icon id={e.ic} /></div>
             <div className="cer-card">
@@ -22,10 +22,11 @@ export default function Timeline() {
                 <span className="dev" lang="hi">{e.hi}</span>
               </h3>
               <p className="when">{e.when}</p>
+              {e.venue && <p className="venue">at {e.venue.name}</p>}
               <p className="note">{e.note}</p>
               <div className="cer-foot">
                 <span className="wear">{e.wear}</span>
-                <a className="cal" href={gcalUrl(e)} target="_blank" rel="noopener">
+                <a className="cal" href={gcalUrl(e, invite.names)} target="_blank" rel="noopener">
                   <Icon id="ic-cal" />
                   Add to calendar
                 </a>

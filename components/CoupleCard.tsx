@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { CONFIG, coupleInitials, coupleNames } from "@/lib/config";
+import { CONFIG } from "@/lib/config";
 import { Divider } from "./SvgSprites";
 
 /* couple flip card — one photo (falls back to initials if missing or it fails to load) */
-export default function CoupleCard() {
+export default function CoupleCard({ names, initials }: { names: string; initials: string }) {
   const [flipped, setFlipped] = useState(false);
   const [photoFailed, setPhotoFailed] = useState(false);
   const showPhoto = Boolean(CONFIG.couplePhoto) && !photoFailed;
@@ -32,14 +32,14 @@ export default function CoupleCard() {
                   {showPhoto ? (
                     <Image
                       src={CONFIG.couplePhoto}
-                      alt={coupleNames}
+                      alt={names}
                       fill
                       sizes="(max-width: 560px) 17rem, 20rem"
                       onError={() => setPhotoFailed(true)}
                     />
                   ) : (
                     <>
-                      <div className="ph">{coupleInitials}</div>
+                      <div className="ph">{initials}</div>
                       <p className="hint">tap to flip</p>
                     </>
                   )}
@@ -50,7 +50,7 @@ export default function CoupleCard() {
                 </div>
               </div>
             </button>
-            <p className="pname">{coupleNames}</p>
+            <p className="pname">{names}</p>
           </div>
         </div>
       </div>

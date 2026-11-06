@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CONFIG, coupleNames } from "@/lib/config";
 import { prefersReducedMotion } from "@/lib/motion";
 import Crest from "./Crest";
 
 const N = 5;
 
 /* footer — tap to light the diyas */
-export default function Footer() {
+export default function Footer({ names, signoff }: { names: string; signoff: string }) {
   const [lit, setLit] = useState<boolean[]>(() => Array(N).fill(false));
   const [reduce, setReduce] = useState(false);
 
@@ -40,8 +39,8 @@ export default function Footer() {
       <p className={`bless${count === N || reduce ? " show" : ""}`} id="bless" lang="hi">
         आपकी उपस्थिति ही हमारा सौभाग्य है
       </p>
-      <p className="sig">{coupleNames}</p>
-      <p className="from">{CONFIG.signoff}</p>
+      <p className="sig">{names}</p>
+      <p className="from">{signoff}</p>
     </footer>
   );
 }

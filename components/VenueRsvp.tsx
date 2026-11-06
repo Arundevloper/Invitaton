@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { CONFIG, mapUrl, venueTel, whatsappUrl } from "@/lib/config";
+import { CONFIG } from "@/lib/config";
+import { mapUrl, venueTel, whatsappUrl } from "@/lib/invite";
 import { Divider } from "./SvgSprites";
 
-export default function VenueRsvp() {
+export default function VenueRsvp({ names }: { names: string }) {
   const [attending, setAttending] = useState(true);
 
   return (
@@ -14,7 +15,8 @@ export default function VenueRsvp() {
         <Divider />
         <div className="detail ros">
           <div className="col">
-            <h3>The venue</h3>
+            <h3>Wedding venue</h3>
+            <p className="vfor">For the Vivah on {CONFIG.dateLong}</p>
             <p className="place">{CONFIG.venueName}</p>
             <address>{CONFIG.venueAddress}</address>
             {CONFIG.venuePhone && (
@@ -39,7 +41,7 @@ export default function VenueRsvp() {
               </button>
             </div>
             <div className="rbtns">
-              <a className="btn" href={whatsappUrl(attending)} target="_blank" rel="noopener">
+              <a className="btn" href={whatsappUrl(attending, names)} target="_blank" rel="noopener">
                 RSVP on WhatsApp
               </a>
               <a className="btn ghost" href={`tel:${CONFIG.phone.replace(/\s/g, "")}`}>

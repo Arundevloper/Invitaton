@@ -1,13 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { CONFIG } from "@/lib/config";
 import Crest from "./Crest";
 import { prefersReducedMotion } from "@/lib/motion";
+import { startMusic } from "@/lib/music";
 
 type Phase = "closed" | "opening" | "gone";
 
-export default function Gate() {
+export default function Gate({ first, second }: { first: string; second: string }) {
   const [phase, setPhase] = useState<Phase>("closed");
   const [showPetals, setShowPetals] = useState(false);
   const stopPetals = useCallback(() => setShowPetals(false), []);
@@ -16,6 +16,7 @@ export default function Gate() {
     if (phase !== "closed") return;
     const reduce = prefersReducedMotion();
     setPhase("opening");
+    startMusic(); // the tap on this button is what lets the browser play sound
     document.body.classList.remove("locked");
     document.body.classList.add("opened");
     if (!reduce) setShowPetals(true);
@@ -33,10 +34,10 @@ export default function Gate() {
           <div className="cover">
             <Crest className="crest" height={132} preload />
             <p className="mantra" lang="hi">॥ श्री गणेशाय नमः ॥</p>
-            <p className="pre">We&apos;re getting married!</p>
-            <p className="cn">{CONFIG.groom}</p>
+            <p className="pre">You are cordially invited to the wedding of</p>
+            <p className="cn">{first}</p>
             <p className="camp">and</p>
-            <p className="cn">{CONFIG.bride}</p>
+            <p className="cn">{second}</p>
             <button id="openBtn" type="button" onClick={open}>
               Open our invitation
             </button>

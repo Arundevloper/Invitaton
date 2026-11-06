@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans, Tiro_Devanagari_Hindi } from "next/font/google";
-import { CONFIG, coupleNames } from "@/lib/config";
+import { CONFIG } from "@/lib/config";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -25,19 +25,10 @@ const tiro = Tiro_Devanagari_Hindi({
   display: "swap",
 });
 
-const title = `${coupleNames} — Wedding Invitation`;
-const description = `${CONFIG.dateLong} · ${CONFIG.city}. ${CONFIG.inviteLine}`;
-
+// defaults — each invitation page (/arun, /kajal) sets its own title and share preview
 export const metadata: Metadata = {
-  title,
-  description,
-  // shows the couple photo when the link is shared on WhatsApp etc.
-  openGraph: {
-    title,
-    description,
-    type: "website",
-    images: CONFIG.couplePhoto ? [{ url: CONFIG.couplePhoto }] : undefined,
-  },
+  title: `${CONFIG.groom} & ${CONFIG.bride} — Wedding Invitation`,
+  description: `${CONFIG.dateLong} · ${CONFIG.city}`,
 };
 
 export const viewport: Viewport = {
