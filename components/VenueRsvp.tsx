@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { CONFIG } from "@/lib/config";
-import { mapUrl, venueTel, whatsappUrl } from "@/lib/invite";
+import { mapUrl, phoneTel, venueTel, whatsappUrl } from "@/lib/invite";
 import { Divider } from "./SvgSprites";
 
-export default function VenueRsvp({ names }: { names: string }) {
+export default function VenueRsvp({ names, phone }: { names: string; phone: string }) {
   const [attending, setAttending] = useState(true);
 
   return (
@@ -41,10 +41,10 @@ export default function VenueRsvp({ names }: { names: string }) {
               </button>
             </div>
             <div className="rbtns">
-              <a className="btn" href={whatsappUrl(attending, names)} target="_blank" rel="noopener">
+              <a className="btn" href={whatsappUrl(attending, names, phone)} target="_blank" rel="noopener">
                 RSVP on WhatsApp
               </a>
-              <a className="btn ghost" href={`tel:${CONFIG.phone.replace(/\s/g, "")}`}>
+              <a className="btn ghost" href={phoneTel(phone)}>
                 Call the family
               </a>
             </div>

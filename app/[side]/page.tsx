@@ -14,6 +14,7 @@ import VenueRsvp from "@/components/VenueRsvp";
 import Footer from "@/components/Footer";
 import RevealObserver from "@/components/RevealObserver";
 import MusicToggle from "@/components/MusicToggle";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type Props = { params: Promise<{ side: string }> };
 
@@ -58,10 +59,13 @@ export default async function InvitationPage({ params }: Props) {
         <CoupleCard names={invite.names} initials={invite.initials} />
         <Timeline invite={invite} />
         <Countdown />
-        <VenueRsvp names={invite.names} />
+        <VenueRsvp names={invite.names} phone={invite.phone} />
       </main>
       <Footer names={invite.names} signoff={invite.signoff} />
-      <MusicToggle />
+      <div className="controls">
+        <ThemeToggle />
+        <MusicToggle />
+      </div>
       <RevealObserver />
     </>
   );

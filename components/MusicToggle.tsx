@@ -12,7 +12,7 @@ export default function MusicToggle() {
   return (
     <button
       type="button"
-      className={`music${playing ? " on" : ""}`}
+      className={`fab music${playing ? " on" : ""}`}
       onClick={toggleMusic}
       aria-label={playing ? "Pause music" : "Play music"}
       aria-pressed={playing}

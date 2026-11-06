@@ -55,8 +55,9 @@ export const CONFIG = {
     "90/1, Besa Ghogli Road, near Swami Samarth Mandir, Datta Nagar, Besa Pipla, Nagpur, Maharashtra 440037",
   venuePhone: "076204 45873",
   rsvpNote: "Kindly confirm your attendance by 20 November.",
-  whatsapp: "917984967605", // country code + number, no + or spaces
-  phone: "+917984967605",
+  // Family contact for "Call the family" and the WhatsApp RSVP — each link uses its own family's number.
+  // 10-digit Indian mobile numbers (+91 is added automatically).
+  contact: { arun: "7984967605", kajal: "9307271905" } satisfies Record<Side, string>,
 };
 
 /* Haldi, Mehndi & Sangeet — each family holds its own, on a different day.

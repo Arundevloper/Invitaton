@@ -38,6 +38,7 @@ export const viewport: Viewport = {
   themeColor: "#53091F",
 };
 
+// Light theme by default; dark is opt-in via components/ThemeToggle.tsx
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable} ${tiro.variable}`}>

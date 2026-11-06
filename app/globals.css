@@ -2,18 +2,15 @@
 :root{
   --paper:#FBF3E8; --paper-2:#F5E9D6; --ink:#3B1620; --muted:#8C6A5E;
   --maroon:#7C1431; --maroon-deep:#53091F; --gold:#C08A2E; --gold-soft:#DBAE52;
-  --rose:#C8486B; --green:#2E6B4F; --line:rgba(192,138,46,.4); --crest-filter:none;
+  --rose:#C8486B; --green:#2E6B4F; --line:rgba(192,138,46,.4); --crest-filter:none; color-scheme:light;
   /* font families come from next/font (see app/layout.tsx) */
   --display:var(--font-cormorant),var(--font-tiro),Georgia,serif;
   --text:var(--font-dmsans),var(--font-tiro),system-ui,-apple-system,sans-serif;
   --hindi:var(--font-tiro),serif;
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#1B0710; --paper-2:#240B16; --ink:#F3E2D6; --muted:#C2A08F;
-  --maroon:#F0B1A0; --maroon-deep:#12040A; --gold:#DBAE52; --gold-soft:#EFCE80;
-  --rose:#FF88A8; --line:rgba(219,174,82,.38); --crest-filter:brightness(1.2);}}
-:root[data-theme="dark"]{
+/* dark theme — chosen with the moon/sun button (see components/ThemeToggle.tsx) */
+:root[data-theme="dark"]{ color-scheme:dark;
   --paper:#1B0710; --paper-2:#240B16; --ink:#F3E2D6; --muted:#C2A08F;
   --maroon:#F0B1A0; --maroon-deep:#12040A; --gold:#DBAE52; --gold-soft:#EFCE80;
   --rose:#FF88A8; --line:rgba(219,174,82,.38); --crest-filter:brightness(1.2);}
@@ -191,13 +188,14 @@ footer .bless.show{opacity:1}
 footer .sig{font-family:var(--display);font-style:italic;font-size:clamp(2.4rem,9vw,3.6rem);margin:1rem 0 .3rem;color:#F7E6C6}
 footer .from{font-size:.86rem;letter-spacing:.1em;color:#EcCfB0}
 
-/* floating music button */
-.music{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:45;
-  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;
+/* floating buttons — theme + music */
+.controls{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:45;
+  display:flex;flex-direction:column;gap:10px}
+.fab{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;
   border:1px solid var(--gold);background:var(--maroon-deep);color:var(--gold-soft);
   box-shadow:0 8px 22px rgba(0,0,0,.28);transition:transform .2s}
-.music:hover{transform:scale(1.06)}
-.music svg{width:22px;height:22px}
+.fab:hover{transform:scale(1.06)}
+.fab svg{width:22px;height:22px}
 .music .bars{display:flex;align-items:flex-end;gap:3px;height:18px}
 .music .bars i{width:3px;height:100%;border-radius:2px;background:currentColor;transform-origin:bottom;animation:eq 1.1s ease-in-out infinite}
 .music .bars i:nth-child(2){animation-delay:-.45s}.music .bars i:nth-child(3){animation-delay:-.8s}

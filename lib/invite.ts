@@ -17,6 +17,8 @@ export interface Invite {
   families: Family[];
   events: WeddingEvent[];
   signoff: string;
+  /** this family's 10-digit contact number */
+  phone: string;
 }
 
 export function isSide(s: string): s is Side {
@@ -38,6 +40,7 @@ export function getInvite(side: Side): Invite {
     families,
     events: EVENTS[side],
     signoff: `With love, ${first} & ${second}`.toUpperCase(),
+    phone: CONFIG.contact[side],
   };
 }
 
@@ -65,9 +68,13 @@ export function gcalUrl(ev: WeddingEvent, names: string) {
   return u.toString();
 }
 
-export function whatsappUrl(attending: boolean, names: string) {
+export function phoneTel(phone: string) {
+  return "tel:+91" + phone.replace(/\D/g, "");
+}
+
+export function whatsappUrl(attending: boolean, names: string, phone: string) {
   const msg = attending
     ? `Namaste! We'd love to attend the wedding of ${names}.`
     : `Namaste! We can't make it, but we send our love and blessings to ${names}.`;
-  return `https://wa.me/${CONFIG.whatsapp}?text=` + encodeURIComponent(msg);
+  return `https://wa.me/91${phone.replace(/\D/g, "")}?text=` + encodeURIComponent(msg);
 }
