@@ -59,7 +59,7 @@ export default async function InvitationPage({ params }: Props) {
         <CoupleCard names={invite.names} initials={invite.initials} />
         <Timeline invite={invite} />
         <Countdown />
-        <VenueRsvp names={invite.names} phone={invite.phone} />
+        <VenueRsvp names={invite.names} phone={invite.phone} rsvp={invite.rsvp} />
       </main>
       <Footer names={invite.names} signoff={invite.signoff} />
       <div className="controls">

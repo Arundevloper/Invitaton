@@ -11,6 +11,9 @@ export type Side = (typeof SIDES)[number];
 
 export type IconId = "ic-haldi" | "ic-mehndi" | "ic-sangeet" | "ic-vivah";
 
+/** built-in music: "bansuri" = flute in Raag Yaman, "santoor" = santoor in Raag Bhupali */
+export type MusicStyle = "bansuri" | "santoor";
+
 export interface WeddingEvent {
   key: string;
   ic: IconId;
@@ -40,9 +43,11 @@ export const CONFIG = {
   // Shri Ganesh crest (transparent PNG). "e_trim" asks Cloudinary to crop the empty border.
   ganeshImage:
     "https://res.cloudinary.com/dsh8ruufg/image/upload/e_trim/v1793948231/259b8e3e-6b8f-44f8-83b6-c11719e837e8.png",
-  // Background music: leave "" for the built-in soft tanpura & santoor melody,
+  // Background music: leave musicUrl "" to use the built-in music below,
   // or paste a link to an .mp3 you have the right to use (e.g. uploaded to Cloudinary).
   musicUrl: "",
+  // built-in music: "bansuri" (flute, Raag Yaman) or "santoor" (santoor, Raag Bhupali)
+  musicStyle: "bansuri" as MusicStyle,
   coupleSay: "Thank you for being part of our story. We look forward to celebrating with you.",
   inviteLine:
     "With joyful hearts, we request the honour of your presence as we unite in the sacred bond of marriage. Your blessings and good wishes will make our celebration complete.",
@@ -55,6 +60,8 @@ export const CONFIG = {
     "90/1, Besa Ghogli Road, near Swami Samarth Mandir, Datta Nagar, Besa Pipla, Nagpur, Maharashtra 440037",
   venuePhone: "076204 45873",
   rsvpNote: "Kindly confirm your attendance by 20 November.",
+  // show the "Let us know" RSVP block (reply note, attending toggle, WhatsApp RSVP) on each link
+  rsvp: { arun: true, kajal: false } satisfies Record<Side, boolean>,
   // Family contact for "Call the family" and the WhatsApp RSVP — each link uses its own family's number.
   // 10-digit Indian mobile numbers (+91 is added automatically).
   contact: { arun: "7984967605", kajal: "9307271905" } satisfies Record<Side, string>,

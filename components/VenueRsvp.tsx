@@ -5,15 +5,15 @@ import { CONFIG } from "@/lib/config";
 import { mapUrl, phoneTel, venueTel, whatsappUrl } from "@/lib/invite";
 import { Divider } from "./SvgSprites";
 
-export default function VenueRsvp({ names, phone }: { names: string; phone: string }) {
+export default function VenueRsvp({ names, phone, rsvp }: { names: string; phone: string; rsvp: boolean }) {
   const [attending, setAttending] = useState(true);
 
   return (
     <section>
       <div className="wrap">
-        <h2 className="ros">Venue &amp; RSVP</h2>
+        <h2 className="ros">{rsvp ? "Venue & RSVP" : "Venue"}</h2>
         <Divider />
-        <div className="detail ros">
+        <div className={`detail ros${rsvp ? "" : " single"}`}>
           <div className="col">
             <h3>Wedding venue</h3>
             <p className="vfor">For the Vivah on {CONFIG.dateLong}</p>
@@ -24,11 +24,20 @@ export default function VenueRsvp({ names, phone }: { names: string; phone: stri
                 <a href={venueTel(CONFIG.venuePhone)}>Call venue — {CONFIG.venuePhone}</a>
               </p>
             )}
-            <a className="btn ghost" href={mapUrl()} target="_blank" rel="noopener">
-              View on map
-            </a>
+            <div className="rbtns">
+              <a className="btn ghost" href={mapUrl()} target="_blank" rel="noopener">
+                View on map
+              </a>
+              {/* without the RSVP block, the family's number lives here instead */}
+              {!rsvp && (
+                <a className="btn ghost" href={phoneTel(phone)}>
+                  Call the family
+                </a>
+              )}
+            </div>
           </div>
 
+          {rsvp && (
           <div className="col">
             <h3>Let us know</h3>
             <p className="rnote">{CONFIG.rsvpNote}</p>
@@ -49,6 +58,7 @@ export default function VenueRsvp({ names, phone }: { names: string; phone: stri
               </a>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>

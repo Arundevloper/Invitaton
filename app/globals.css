@@ -169,6 +169,7 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(2.2rem,8vw,3.2rem)
 .btn.ghost{background:none;color:var(--maroon)}
 .btn.ghost:hover{box-shadow:none;background:var(--maroon);color:var(--paper)}
 .rbtns{display:flex;flex-direction:column;gap:.6rem;align-items:center}
+.detail.single{grid-template-columns:1fr;max-width:26rem}
 @media (max-width:560px){.detail{grid-template-columns:1fr;gap:2.4rem}}
 
 /* footer — tap to light diyas */
