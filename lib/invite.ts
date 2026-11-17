@@ -19,6 +19,8 @@ export interface Invite {
   signoff: string;
   /** this family's 10-digit contact number */
   phone: string;
+  /** show the RSVP block on this link */
+  rsvp: boolean;
 }
 
 export function isSide(s: string): s is Side {
@@ -41,6 +43,7 @@ export function getInvite(side: Side): Invite {
     events: EVENTS[side],
     signoff: `With love, ${first} & ${second}`.toUpperCase(),
     phone: CONFIG.contact[side],
+    rsvp: CONFIG.rsvp[side],
   };
 }
 
