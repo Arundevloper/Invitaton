@@ -89,7 +89,7 @@ function preWedding(side: Side): WeddingEvent[] {
     },
     {
       key: "sangeet", ic: "ic-sangeet", name: "Sangeet", hi: "संगीत", day: label, when: "7:00 pm",
-      note: "Songs, dance performances and a joyful evening with family and friends. Dinner will be served.",
+      note: "Songs, dance performances and a joyful evening with family and friends.",
       wear: "Dress code: something that sparkles", accent: "#8A4BC0", start: `${date}T19:00:00+05:30`, dur: 240,
     },
   ];
